@@ -9,9 +9,6 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    //public TouristAttraction() {
-
-    //}
 
     public String getDescription() {
         return description;

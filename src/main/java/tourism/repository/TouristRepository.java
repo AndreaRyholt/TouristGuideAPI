@@ -18,10 +18,20 @@ public class TouristRepository {
             attractionsList.add( new TouristAttraction("Bakken", "Danmarks ældste forlystelsespark."));
         }
 
-    /*public void AddAttraction(String name, String description) {
-        TouristAttraction attraction = new TouristAttraction(name, description);
+    public TouristAttraction addAttraction(TouristAttraction attraction){
         attractionsList.add(attraction);
-    }*/
+        return attraction;
+    }
+
+    public TouristAttraction updateAttraction(TouristAttraction attraction){
+        for (int i = 0; i < attractionsList.size(); i++) {
+            if (attractionsList.get(i).getName().equalsIgnoreCase(attraction.getName())){
+                attractionsList.set(i,attraction);
+                return attraction;
+            }
+        }
+        return null;
+    }
 
     public ArrayList getAttractionsName(String name) {
         return attractionsList;
@@ -35,12 +45,16 @@ public class TouristRepository {
         return attractionsList;
     }
 
-    public void addAttraction(TouristAttraction attraction){
-        attractionsList.add(attraction);
-    }
-
-    public void deleteAttraction(){
-        int index = -1;
-        
+    public TouristAttraction deleteAttraction(String name){
+        TouristAttraction attraction = null;
+        for (TouristAttraction touristAttraction : attractionsList){
+            if (touristAttraction.getName().equalsIgnoreCase(name)){
+                attraction = touristAttraction;
+            }
+        }
+        if (attraction!=null){
+            attractionsList.remove(attraction);
+        }
+        return attraction;
     }
 }

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 @Service
 public class TouristService {
 
-        // Stub implementering
         private TouristRepository repository;
 
         public TouristService() {
@@ -25,23 +24,17 @@ public class TouristService {
             return repository.getAttractionsName(name);
         }
 
-        public Message postWelcomeMessage(Message message) {
-            Message returnMessage = repository.addMessage(message);
-            // her kunne server tilføje eksytra attributter, f.eks dato for oprettelse
-            return returnMessage;
+        public TouristAttraction postAttraction(TouristAttraction attraction) {
+            return  repository.addAttraction(attraction);
         }
 
-        public Message putWelcomeMessage(Message message) {
-            Message returnMessage = repository.changeMessage(message);
-            return returnMessage;
+        public TouristAttraction putAttractions(TouristAttraction attraction) {
+            return repository.updateAttraction(attraction);
         }
 
-        public Message deleteWelcomeMessage(Message message) {
-            Message returnMessage = repository.deleteMessage(message);
-            if (returnMessage != null)
-                return returnMessage;
-            else return new Message("Ikke fundet");
-        }
+
+        public TouristAttraction deleteAttraction(String name){
+            return repository.deleteAttraction(name);
 
     }
 

@@ -1,9 +1,8 @@
-package tourism.service;
+package com.example.tourism.service;
 
-import org.apache.logging.log4j.message.Message;
+import com.example.tourism.model.TouristAttraction;
+import com.example.tourism.repository.TouristRepository;
 import org.springframework.stereotype.Service;
-import tourism.model.TouristAttraction;
-import tourism.repository.TouristRepository;
 
 import java.util.ArrayList;
 
@@ -16,11 +15,11 @@ public class TouristService {
             repository = new TouristRepository();
         }
 
-        public ArrayList<TouristAttraction> getAllAttractions(String name)  {
-            return repository.getAttractionsName(name);
+        public ArrayList<TouristAttraction> getAllAttractions()  {
+            return repository.getAttractionsList();
         }
 
-        public ArrayList getAttractions(String name)  {
+        public ArrayList getAttractionsName(String name){
             return repository.getAttractionsName(name);
         }
 

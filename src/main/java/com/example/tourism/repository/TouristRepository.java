@@ -1,7 +1,7 @@
-package tourism.repository;
+package com.example.tourism.repository;
 
 import org.springframework.stereotype.Repository;
-import tourism.model.TouristAttraction;
+import com.example.tourism.model.TouristAttraction;
 
 import java.util.ArrayList;
 
@@ -33,18 +33,6 @@ public class TouristRepository {
         return null;
     }
 
-    public ArrayList getAttractionsName(String name) {
-        return attractionsList;
-    }
-
-    public ArrayList getAttractionsDescription(String description) {
-        return attractionsList;
-    }
-
-    public ArrayList getAttractionsList() {
-        return attractionsList;
-    }
-
     public TouristAttraction deleteAttraction(String name){
         TouristAttraction attraction = null;
         for (TouristAttraction touristAttraction : attractionsList){
@@ -56,5 +44,17 @@ public class TouristRepository {
             attractionsList.remove(attraction);
         }
         return attraction;
+    }
+
+    public ArrayList getAttractionsName(String name) {
+        return attractionsList;
+    }
+
+    public ArrayList getAttractionsDescription(String description) {
+        return attractionsList;
+    }
+
+    public ArrayList getAttractionsList() {
+        return attractionsList;
     }
 }

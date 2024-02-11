@@ -23,6 +23,10 @@ public class TouristService {
             return repository.getAttractionsName(name);
         }
 
+        public ArrayList getAttractionsDescription(String description) {
+            return repository.getAttractionsDescription(description);
+        }
+
         public TouristAttraction postAttraction(TouristAttraction attraction) {
             return  repository.addAttraction(attraction);
         }

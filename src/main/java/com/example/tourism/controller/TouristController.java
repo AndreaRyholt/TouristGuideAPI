@@ -13,89 +13,56 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/attractions") //localhost:8080/attractions
 public class TouristController {
     TouristRepository repository = new TouristRepository();
     TouristService service = new TouristService();
     private ArrayList<TouristRepository> attractionList;
-    //TouristAttraction ta = new TouristAttraction();
-
 
     /** SHOW ALL ATTRACTIONS**/
-    //@GetMapping("/show-all-attractions")
+    @GetMapping("/show-all-attractions")
     public ResponseEntity<ArrayList<TouristAttraction>> getAllAttractions(String name){
-        List<TouristAttraction> attractionList = service.getAttractionsName(name);
-        return new ResponseEntity<>(repository.getAttractionsName(name), HttpStatus.OK);
+        ArrayList<TouristAttraction> attractionList = service.getAttractionsName(name);
+        return new ResponseEntity<>(attractionList, HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
-    @ResponseBody
-    public ResponseEntity<TouristAttraction> getSpecificAttraction(String name, String description){
-        String attractionName = String.valueOf(repository.getAttractionsName(name));
-        String attractionDescription = String.valueOf(repository.getAttractionsDescription(description));
+    /** SHOW ATTRACTION NAME AND DESCRIPTION**/
+    @GetMapping(path = "show-all-attractions/{name}")
+    public ResponseEntity<String> getSpecificAttraction(@PathVariable String name, String description) {
 
-       HttpHeaders responseHeaders = new HttpHeaders();
-       responseHeaders.set("Content-Type","text/html");
-
-       /*String htmlResponse = "<html><body><h1>" +
-               attractionName + attractionDescription +
-               "</h1></body></html>";*/
-
-       return new ResponseEntity<TouristAttraction>(
-               "<html><body><h1>"
-                       + attractionName.getSpecificAttraction()
-                       + attractionDescription.getSpecificAttraction() +
-                "</h1></body></html>", responseHeaders, HttpStatus.OK);
-    }
-
-
-
-
-    @GetMapping(path = "velkommen/{id}")    //localhost:8080/kea/velkommen/1
-    public ResponseEntity<String> getMessage(@PathVariable int id) {
-//        Message message = welcomeService.getWelcomeMessage(id);
-//        return new ResponseEntity<Message>(message, HttpStatus.OK);
-
-
-        Message message = welcomeService.getWelcomeMessage(id);
+        ArrayList attractionName = service.getAttractionsName(name);
+        ArrayList attractionDescription = service.getAttractionsDescription(description);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Content-Type","text/html");
 
-
         return new ResponseEntity<String>(
                 "<html><body><h1>" +
-                        message.getMessage() +
+                        attractionName +
+                        attractionDescription +
                         "</h1></body></html>"
                 ,responseHeaders, HttpStatus.OK);
     }
 
-
-
-
-    @PostMapping(path = "velkommen/opret")      //localhost:8080/kea/velkommen/opret
-    public ResponseEntity<Message> postMessage(@RequestBody Message message) {
-        Message returnMessage = welcomeService.postWelcomeMessage(message);
-        return new ResponseEntity<Message>(returnMessage, HttpStatus.OK);
+    @PostMapping(path = "show-all-attractions/opret")      //localhost:8080/kea/velkommen/opret
+    public ResponseEntity<TouristAttraction> postAttraction(@RequestBody TouristAttraction attraction) {
+        TouristAttraction addAttraction = service.postAttraction(attraction);
+        return new ResponseEntity<TouristAttraction>(addAttraction, HttpStatus.OK);
     }
 
-
-    @PutMapping(path = "velkommen/ret")     //localhost:8080/kea/velkommen/ret
-    public ResponseEntity<Message> putMessage(@RequestBody Message message) {
-        Message returnMessage = welcomeService.putWelcomeMessage(message);
-        if (returnMessage!=null)
-            return new ResponseEntity<Message>(returnMessage, HttpStatus.OK);
+    @PutMapping(path = "show-all-attractions/ret")     //localhost:8080/kea/velkommen/ret
+    public ResponseEntity<TouristAttraction> putAttraction(@RequestBody TouristAttraction attraction) {
+        TouristAttraction updateAttraction = service.putAttractions(attraction);
+        if (updateAttraction!=null)
+            return new ResponseEntity<TouristAttraction>(updateAttraction, HttpStatus.OK);
         else
-            return new ResponseEntity<Message>(new Message(0, "Ikke fundet"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<TouristAttraction>(new TouristAttraction(null, "Ikke fundet"), HttpStatus.NOT_FOUND);
     }
 
 
-    @DeleteMapping("velkommen/slet")
-    public ResponseEntity<Message> deleteMessage(@RequestBody Message message) {
-        Message returnMessage = welcomeService.deleteWelcomeMessage(message);
-        return new ResponseEntity<Message>(returnMessage, HttpStatus.OK);
+    @DeleteMapping("show-all-attractions/slet")
+    public ResponseEntity<TouristAttraction> deleteAttraction(@RequestBody String name) {
+        TouristAttraction deleteAttraction = service.deleteAttraction(name);
+        return new ResponseEntity<TouristAttraction>(deleteAttraction, HttpStatus.OK);
     }
-}
-
 }

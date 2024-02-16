@@ -9,36 +9,36 @@ import java.util.ArrayList;
 @Service
 public class TouristService {
 
-        private TouristRepository repository;
+    private TouristRepository repository;
 
-        public TouristService() {
-            repository = new TouristRepository();
-        }
+    public TouristService() {
+        repository = new TouristRepository();
+    }
 
-        public ArrayList<TouristAttraction> getAllAttractions()  {
-            return repository.getAttractionsList();
-        }
+    public ArrayList<TouristAttraction> getAllAttractions()  {
+        return repository.getAttractionsList();
+    }
 
-        public ArrayList getAttractionsName(String name){
-            return repository.getAttractionsName(name);
-        }
+    public ArrayList getAttractionsName(String name){
+        return repository.getAttractionsName(name);
+    }
 
-        public ArrayList getAttractionsDescription(String description) {
-            return repository.getAttractionsDescription(description);
-        }
+    public ArrayList getAttractionsDescription(String description) {
+        return repository.getAttractionsDescription(description);
+    }
 
-        public TouristAttraction postAttraction(TouristAttraction attraction) {
-            return  repository.addAttraction(attraction);
-        }
+    public TouristAttraction postAttraction(TouristAttraction attraction) {
+        return  repository.addAttraction(attraction);
+    }
 
-        public TouristAttraction putAttractions(TouristAttraction attraction) {
-            return repository.updateAttraction(attraction);
-        }
+    public TouristAttraction putAttractions(TouristAttraction attraction) {
+        return repository.updateAttraction(attraction);
+    }
 
 
-        public TouristAttraction deleteAttraction(String name){
-            return repository.deleteAttraction(name);
+    public TouristAttraction deleteAttraction(String name){
+        return repository.deleteAttraction(name);
 
-        }
+    }
 
 }

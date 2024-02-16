@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 @Repository
 public class TouristRepository {
-        private ArrayList<TouristAttraction> attractionsList = new ArrayList<>();
+    private ArrayList<TouristAttraction> attractionsList = new ArrayList<>();
 
-        public void TouristRepository() {
-            /*this.attractionsList = new ArrayList<TouristAttraction>();*/
-            attractionsList.add(new TouristAttraction("Tivoli", "Stor forlystelsespark i midten af København."));
-            attractionsList.add( new TouristAttraction("Den Lille Havfrue", "En havfrue på en sten, fra H. C. Andersens kendte eventyr 'Den lille Havfrue'."));
-            attractionsList.add(new TouristAttraction("Djurs Sommerland", "Forlystelsespark for små børn."));
-            attractionsList.add(new TouristAttraction("Glyptoteket", "Kunstmuseum i København."));
-            attractionsList.add( new TouristAttraction("Bakken", "Danmarks ældste forlystelsespark."));
-        }
+    public void TouristRepository() {
+        /*this.attractionsList = new ArrayList<TouristAttraction>();*/
+        attractionsList.add(new TouristAttraction("Tivoli", "Stor forlystelsespark i midten af København."));
+        attractionsList.add( new TouristAttraction("Den Lille Havfrue", "En havfrue på en sten, fra H. C. Andersens kendte eventyr 'Den lille Havfrue'."));
+        attractionsList.add(new TouristAttraction("Djurs Sommerland", "Forlystelsespark for små børn."));
+        attractionsList.add(new TouristAttraction("Glyptoteket", "Kunstmuseum i København."));
+        attractionsList.add( new TouristAttraction("Bakken", "Danmarks ældste forlystelsespark."));
+    }
 
     public TouristAttraction addAttraction(TouristAttraction attraction){
         attractionsList.add(attraction);

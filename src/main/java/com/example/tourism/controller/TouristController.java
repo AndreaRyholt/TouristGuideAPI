@@ -21,17 +21,18 @@ public class TouristController {
     private ArrayList<TouristRepository> attractionList;
 
     /** SHOW ALL ATTRACTIONS**/
-    @GetMapping("/show-all-attractions")
-    public ResponseEntity<ArrayList<TouristAttraction>> getAllAttractions(String name){
-        ArrayList<TouristAttraction> attractionList = service.getAttractionsName(name);
+    @GetMapping("")
+    public ResponseEntity<List<TouristAttraction>> getAllAttractions(String name){
+        List<TouristAttraction> attractionList = service.getAttractionsName(name);
         return new ResponseEntity<>(attractionList, HttpStatus.OK);
     }
 
     /** SHOW ATTRACTION NAME AND DESCRIPTION**/
-    @GetMapping(path = "show-all-attractions/{name}")
+    @GetMapping(path = "/{name}")
+
     public ResponseEntity<String> getSpecificAttraction(@PathVariable String name, String description) {
 
-        ArrayList attractionName = service.getAttractionsName(name);
+       ArrayList attractionName = service.getAttractionsName(name);
         ArrayList attractionDescription = service.getAttractionsDescription(description);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Content-Type","text/html");
